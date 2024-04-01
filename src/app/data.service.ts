@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-
+import { EMPTY, Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) { }
   private readonly api = 'https://pokeapi.co/api/v2/';
 
   fetch<T>(url: string): Observable<T> {
-    return this.http.get<T>(url);
+    return this.http.get<T>(url).pipe(
+      catchError(() => {
+        this.router.navigate(['404']);
+        return EMPTY;
+      })
+    );
   }
-
-/*   getData<T>(ep: string, key = ''): Observable<T> {
-    return this.http.get<T>(`${this.api}${ep}/${key}`);
-  } */
-
 }

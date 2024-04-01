@@ -25,8 +25,9 @@ export class TableComponent implements OnInit {
     if (url) {
       this.isLoading = true;
       // Outer request, return an Observable that stores
+      this.data$ = this.http.fetch<Paginated>(url)
       // sharePlay for making only one request even if the subscribers are multiple. --multicast
-      this.data$ = this.http.fetch<Paginated>(url).pipe(shareReplay(1));
+      .pipe(shareReplay(1));
 
       // Observable that stores pokemon data
       this.tableRowsData$ = this.data$.pipe(

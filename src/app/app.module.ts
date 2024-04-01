@@ -9,6 +9,7 @@ import { TableComponent } from './home/table/table.component';
 import { CardComponent } from './card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginationComponent } from './home/table/pagination/pagination.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PaginationComponent } from './home/table/pagination/pagination.componen
     TableComponent,
     CardComponent,
     PaginationComponent,
+    NotFoundComponent,
    
   ],
   imports: [

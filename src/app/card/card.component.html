@@ -1,11 +1,10 @@
-<div class="container" *ngIf="cardData$ | async as pokemon">
+<div  *ngIf="cardData$ | async as pokemon" class="container">
   <ng-container *ngIf="!isLoading">
     <div class="card">
       <p>#{{ pokemon.id }} {{ pokemon.name }}</p>
-      <div style="display: flex">
-        <div><img [src]="pokemon.sprites.back_default" alt="" /></div>
-
-        <div><img [src]="pokemon.sprites.front_default" alt="" /></div>
+      <div style="display: flex; gap: 0.5rem">
+        <div style="width: 96px; height: 96px"><img [src]="pokemon.sprites.back_default" alt="" /></div>
+        <div style="width: 96px; height: 96px"><img [src]="pokemon.sprites.front_default" alt="" /></div>
       </div>
       <p>weight: {{ pokemon.weight }}</p>
       <p>height: {{ pokemon.height }}</p>
@@ -20,24 +19,24 @@
 
 <div class="container" *ngIf="isLoading">
   <div class="card" style="height: 202px">
-    <div class="skeleton-box" style="width: 60px; height: 18px"></div>
-    <div style="display: flex">
+    <div class="skeleton-box" style="width: 80px; height: 20px"></div>
+    <div style="display: flex; gap: 0.5rem">
       <div class="skeleton-box" style="width: 96px; height: 96px"></div>
       <div class="skeleton-box" style="width: 96px; height: 96px"></div>
     </div>
-    <div class="skeleton-box" style="width: 60px; height: 18px"></div>
-    <div class="skeleton-box" style="width: 70px; height: 18px"></div>
+    <div class="skeleton-box" style="width: 70px; height: 20px"></div>
+    <div class="skeleton-box" style="width: 50px; height: 20px"></div>
   </div>
   <div class="btnsContainer">
-    <div class="skeleton-box" style="width: 30px; height: 21px"></div>
-    <div class="skeleton-box" style="width: 30px; height: 21px"></div>
-    <div class="skeleton-box" style="width: 50px; height: 21px"></div>
+    <div class="skeleton-box" style="width: 42px; height: 24px"></div>
+    <div class="skeleton-box" style="width: 42px; height: 24px"></div>
+    <div class="skeleton-box" style="width: 70px; height: 24px"></div>
   </div>
 </div>
 
-<div class="container" *ngIf="hasError">
+<!-- <div class="container" *ngIf="hasError">
   <div>
     <h1>No pokemon found</h1>
     <button routerLink="">go home</button>
   </div>
-</div>
+</div> -->
