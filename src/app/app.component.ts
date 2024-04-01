@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { DataService } from './data.service';
+import { Observable, forkJoin, map, switchMap } from 'rxjs';
+import { Pokemon } from './dataTypes/pokemonResponse';
+import { Paginated } from './dataTypes/paginatedResponse';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,5 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'mPokedex';
+
 }

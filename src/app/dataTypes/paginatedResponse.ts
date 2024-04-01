@@ -1,6 +1,6 @@
 export interface Paginated {
     count: number;
-    prev: null | string;
+    previous: null | string;
     next: null | string;
     results: Results[]
 }

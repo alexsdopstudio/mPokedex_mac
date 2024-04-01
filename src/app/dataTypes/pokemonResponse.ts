@@ -1,4 +1,4 @@
-import { Results } from './Paginated';
+import { Results } from './paginatedResponse';
 
 export interface Pokemon {
   id: number;

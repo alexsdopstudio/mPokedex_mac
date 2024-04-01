@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { TableComponent } from './home/table/table.component';
 import { CardComponent } from './card/card.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PaginationComponent } from './home/table/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,14 @@ import { CardComponent } from './card/card.component';
     HomeComponent,
     SidebarComponent,
     TableComponent,
-    CardComponent
+    CardComponent,
+    PaginationComponent,
+   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration()

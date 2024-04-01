@@ -1,1 +1,51 @@
-<p>table works!</p>
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>type(s)</th>
+        <th>img</th>
+        <th>details</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="tableRowsData$ | async as tableRowsData">
+      <ng-container *ngIf="!isLoading">
+        <tr *ngFor="let row of tableRowsData">
+          <td>{{ row.id }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ extractTypeNames(row.types) }}</td>
+          <td>
+            <img [src]="row.sprites.front_default" alt="" style="width: 40px" />
+          </td>
+          <td><button [routerLink]="'card/'+row.id">go</button></td>
+        </tr>
+      </ng-container>
+    </tbody>
+
+    <tbody *ngIf="isLoading">
+      <tr *ngFor="let row of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+        <td>
+          <div class="skeleton-box" style="width: 20px; height: 20px"></div>
+        </td>
+        <td>
+          <div class="skeleton-box" style="width: 50px; height: 20px"></div>
+        </td>
+        <td>
+          <div class="skeleton-box" style="width: 50px; height: 30px"></div>
+        </td>
+        <td>
+          <div class="skeleton-box" style="width: 40px; height: 40px"></div>
+        </td>
+        <td>
+          <div class="skeleton-box" style="width: 30px; height: 30px"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="data$ | async as paginationData">
+    <button (click)="getData(paginationData.previous)">prev</button>
+    <button (click)="getData(paginationData.next)">next</button>
+  </div>
+</div>
