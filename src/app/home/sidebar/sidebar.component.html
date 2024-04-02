@@ -1,3 +1,9 @@
-<nav>
-  <div>filters and search</div>
+<nav style="display: flex; gap: 1rem;">
+  <div id="search">
+    <input type="text" placeholder="Search" #searchInput />
+    <button (click)="search(searchInput.value)">Go</button>
+  </div>
+  <div>
+    filter by type
+  </div>
 </nav>

@@ -24,7 +24,7 @@ export class TableComponent implements OnInit {
   getData(url: string | null) {
     if (url) {
       this.isLoading = true;
-      // Outer request, return an Observable that stores
+      // Outer request, return an Observable that stores paginated data
       this.data$ = this.http.fetch<Paginated>(url)
       // sharePlay for making only one request even if the subscribers are multiple. --multicast
       .pipe(shareReplay(1));

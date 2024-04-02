@@ -1,10 +1,14 @@
-<div  *ngIf="cardData$ | async as pokemon" class="container">
+<div *ngIf="cardData$ | async as pokemon" class="container">
   <ng-container *ngIf="!isLoading">
     <div class="card">
       <p>#{{ pokemon.id }} {{ pokemon.name }}</p>
       <div style="display: flex; gap: 0.5rem">
-        <div style="width: 96px; height: 96px"><img [src]="pokemon.sprites.back_default" alt="" /></div>
-        <div style="width: 96px; height: 96px"><img [src]="pokemon.sprites.front_default" alt="" /></div>
+        <div style="width: 96px; height: 96px">
+          <img [src]="pokemon.sprites.back_default" alt="" />
+        </div>
+        <div style="width: 96px; height: 96px">
+          <img [src]="pokemon.sprites.front_default" alt="" />
+        </div>
       </div>
       <p>weight: {{ pokemon.weight }}</p>
       <p>height: {{ pokemon.height }}</p>
@@ -17,7 +21,7 @@
   </ng-container>
 </div>
 
-<div class="container" *ngIf="isLoading">
+<div *ngIf="isLoading" class="container">
   <div class="card" style="height: 202px">
     <div class="skeleton-box" style="width: 80px; height: 20px"></div>
     <div style="display: flex; gap: 0.5rem">
@@ -33,10 +37,3 @@
     <div class="skeleton-box" style="width: 70px; height: 24px"></div>
   </div>
 </div>
-
-<!-- <div class="container" *ngIf="hasError">
-  <div>
-    <h1>No pokemon found</h1>
-    <button routerLink="">go home</button>
-  </div>
-</div> -->
