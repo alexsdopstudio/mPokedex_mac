@@ -12,6 +12,7 @@
       </div>
       <p>weight: {{ pokemon.weight }}</p>
       <p>height: {{ pokemon.height }}</p>
+      <p>{{ this.service.extractTypeNames(pokemon.types) }}</p>
     </div>
     <div class="btnsContainer">
       <button (click)="prevPokemon()">prev</button>
@@ -22,18 +23,19 @@
 </div>
 
 <div *ngIf="isLoading" class="container">
-  <div class="card" style="height: 202px">
+  <div class="card" style="height: 232px">
     <div class="skeleton-box" style="width: 80px; height: 20px"></div>
     <div style="display: flex; gap: 0.5rem">
       <div class="skeleton-box" style="width: 96px; height: 96px"></div>
       <div class="skeleton-box" style="width: 96px; height: 96px"></div>
     </div>
-    <div class="skeleton-box" style="width: 70px; height: 20px"></div>
-    <div class="skeleton-box" style="width: 50px; height: 20px"></div>
+    <div class="skeleton-box" style="width: 70px; height: 22px"></div>
+    <div class="skeleton-box" style="width: 50px; height: 22px"></div>
+    <div class="skeleton-box" style="width: 60px; height: 22px"></div>
   </div>
   <div class="btnsContainer">
-    <div class="skeleton-box" style="width: 42px; height: 24px"></div>
-    <div class="skeleton-box" style="width: 42px; height: 24px"></div>
-    <div class="skeleton-box" style="width: 70px; height: 24px"></div>
+    <div class="skeleton-box" style="width: 42px; height: 22px"></div>
+    <div class="skeleton-box" style="width: 42px; height: 22px"></div>
+    <div class="skeleton-box" style="width: 70px; height: 22px"></div>
   </div>
 </div>

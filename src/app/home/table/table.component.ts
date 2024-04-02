@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
 import { Paginated, Results } from '../../dataTypes/paginatedResponse';
 import { Observable, forkJoin, map, shareReplay, switchMap, tap } from 'rxjs';
-import { Pokemon } from '../../dataTypes/pokemonResponse';
+import { Pokemon, PokemonType } from '../../dataTypes/pokemonResponse';
 
 @Component({
   selector: 'app-table',
@@ -14,25 +14,21 @@ export class TableComponent implements OnInit {
   tableRowsData$: Observable<Pokemon[]> | undefined;
   isLoading = true;
 
-  constructor(private http: DataService) { }
+  constructor(public service: DataService) { }
 
   ngOnInit(): void {
     this.getData('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0');
-    console.log('onInit')
   }
 
   getData(url: string | null) {
     if (url) {
       this.isLoading = true;
-      // Outer request, return an Observable that stores paginated data
-      this.data$ = this.http.fetch<Paginated>(url)
-      // sharePlay for making only one request even if the subscribers are multiple. --multicast
-      .pipe(shareReplay(1));
-
-      // Observable that stores pokemon data
-      this.tableRowsData$ = this.data$.pipe(
+      this.data$ = this.service.fetch<Paginated>(url)// Outer request, return an Observable that stores paginated data
+      .pipe(shareReplay(1));// sharePlay for making only one request even if the subscribers are multiple. --multicast
+      
+      this.tableRowsData$ = this.data$.pipe(// Observable that stores pokemon data
         switchMap((response: Paginated) => {
-          const requests = response.results.map((result) => this.http.fetch<Pokemon>(result.url));
+          const requests = response.results.map((result) => this.service.fetch<Pokemon>(result.url));
           return forkJoin(requests);
         }),
         tap(() => this.isLoading = false)
@@ -40,7 +36,9 @@ export class TableComponent implements OnInit {
     }
   }
 
-  extractTypeNames(types: any[]): string {
-    return types.map((obj) => obj.type.name).join(', ');
-  }
+  /*  
+    // if service is private
+    getTypeNames(types: PokemonType[]): string {
+    return this.service.extractTypeNames(types);
+  } */
 }

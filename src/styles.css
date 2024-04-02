@@ -4,6 +4,12 @@ body {
   padding: 0;
 }
 
+img {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
 .skeleton-box {
   background-color: #ccc;
   border-radius: 4px;

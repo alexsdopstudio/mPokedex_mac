@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { EMPTY, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { PokemonType } from './dataTypes/pokemonResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -18,5 +19,9 @@ export class DataService {
         return EMPTY;
       })
     );
+  }
+
+  extractTypeNames(types: PokemonType[]): string {
+    return types.map((obj) => obj.type.name).join(', ');
   }
 }

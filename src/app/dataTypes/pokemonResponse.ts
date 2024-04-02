@@ -17,10 +17,12 @@ export interface Pokemon {
 
   stats: Stat[];
 
-  types: {
-    slot: number;
-    type: Results;
-  }[];
+  types: PokemonType[];
+}
+
+export interface PokemonType {
+  slot: number;
+  type: Results;
 }
 
 export interface Stat {

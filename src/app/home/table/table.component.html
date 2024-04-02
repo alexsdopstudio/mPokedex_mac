@@ -14,7 +14,7 @@
         <tr *ngFor="let row of tableRowsData">
           <td>{{ row.id }}</td>
           <td>{{ row.name }}</td>
-          <td>{{ extractTypeNames(row.types) }}</td>
+          <td>{{ this.service.extractTypeNames(row.types) }}</td>
           <td>
             <img [src]="row.sprites.front_default" alt="" style="width: 40px" />
           </td>
@@ -38,7 +38,7 @@
           <div class="skeleton-box" style="width: 40px; height: 40px"></div>
         </td>
         <td>
-          <div class="skeleton-box" style="width: 30px; height: 30px"></div>
+          <div class="skeleton-box" style="width: 30px; height: 21px"></div>
         </td>
       </tr>
     </tbody>

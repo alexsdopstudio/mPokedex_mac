@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EMPTY, Observable, Subscription, catchError, of, shareReplay, tap } from 'rxjs';
-import { Pokemon } from '../dataTypes/pokemonResponse';
+import { Pokemon, PokemonType } from '../dataTypes/pokemonResponse';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -15,13 +15,13 @@ export class CardComponent implements OnInit {
   currentId: number | undefined;
   isLoading = true;
 
-  constructor(private http: DataService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(public service: DataService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.isLoading = true;
       this.currentId = +params['id'];
-      this.cardData$ = this.http.fetch<Pokemon>(this.url + params['id'])
+      this.cardData$ = this.service.fetch<Pokemon>(this.url + params['id'])
         .pipe(
           tap(() => this.isLoading = false),
         );
@@ -39,4 +39,11 @@ export class CardComponent implements OnInit {
       this.router.navigate(['/card', this.currentId - 1]);
     }
   }
+
+
+  /*  
+    // if service is private
+    getTypeNames(types: PokemonType[]): string {
+    return this.service.extractTypeNames(types);
+  } */
 }
