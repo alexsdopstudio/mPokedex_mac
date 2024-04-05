@@ -9,12 +9,12 @@
         <th>details</th>
       </tr>
     </thead>
-    <tbody *ngIf="tableRowsData$ | async as tableRowsData">
+    <tbody *ngIf="data">
       <ng-container *ngIf="!isLoading">
-        <tr *ngFor="let row of tableRowsData">
+        <tr *ngFor="let row of data">
           <td>{{ row.id }}</td>
           <td>{{ row.name }}</td>
-          <td>{{ this.service.extractTypeNames(row.types) }}</td>
+          <td>{{ getTypeNames(row.types) }}</td>
           <td>
             <img [src]="row.sprites.front_default" alt="" style="width: 40px" />
           </td>
@@ -44,8 +44,8 @@
     </tbody>
   </table>
 
-  <div *ngIf="data$ | async as paginationData">
+<!--   <div *ngIf="data">
     <button (click)="getData(paginationData.previous)">prev</button>
     <button (click)="getData(paginationData.next)">next</button>
-  </div>
+  </div> -->
 </div>

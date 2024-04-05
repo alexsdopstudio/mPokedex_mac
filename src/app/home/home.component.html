@@ -1,4 +1,4 @@
 <section>
-  <app-sidebar></app-sidebar>
-  <app-table></app-table>
+  <app-sidebar (urlEvent)="getFilteredData($event)" ></app-sidebar>
+  <app-table [data]="data" [isLoading]="isLoading"></app-table>
 </section>

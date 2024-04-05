@@ -1,9 +1,15 @@
-<nav style="display: flex; gap: 1rem;">
+<nav style="display: flex; gap: 1rem">
   <div id="search">
     <input type="text" placeholder="Search" #searchInput />
     <button (click)="search(searchInput.value)">Go</button>
   </div>
   <div>
-    filter by type
+    <button
+      (click)="sendToParent(type.url)"
+      *ngFor="let type of types"
+      [value]="type.name"
+    >
+      {{ type.name }}
+    </button>
   </div>
 </nav>

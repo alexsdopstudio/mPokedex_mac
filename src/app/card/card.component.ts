@@ -39,11 +39,9 @@ export class CardComponent implements OnInit {
       this.router.navigate(['/card', this.currentId - 1]);
     }
   }
-
-
-  /*  
-    // if service is private
-    getTypeNames(types: PokemonType[]): string {
+  
+  // if service is private
+  getTypeNames(types: PokemonType[]): string {
     return this.service.extractTypeNames(types);
-  } */
+  }
 }
