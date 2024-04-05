@@ -5,11 +5,12 @@
   </div>
   <div>
     <button
-      (click)="sendToParent(type.url)"
+      (click)="sendUrl(type.url)"
       *ngFor="let type of types"
       [value]="type.name"
     >
       {{ type.name }}
     </button>
   </div>
+
 </nav>

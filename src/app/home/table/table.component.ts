@@ -9,15 +9,23 @@ import { Pokemon, PokemonType } from '../../dataTypes/pokemonResponse';
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
-export class TableComponent{
+export class TableComponent {
 /*   data$: Observable<Paginated> | undefined
   tableRowsData$: Observable<Pokemon[]> | undefined;
   tableData: Pokemon[] | undefined; */
   @Input() data: Pokemon[] | undefined;
   @Input() isLoading: Boolean | undefined;
+  //tableData: Pokemon[] | undefined;
   //isLoading = true;
 
   constructor(private service: DataService) { }
+
+/*   ngOnChanges(changes: SimpleChanges) {
+    if (changes['data']) {
+      this.tableData = this.data;
+      console.log(this.tableData);
+    }
+  } */
 
   /*
 

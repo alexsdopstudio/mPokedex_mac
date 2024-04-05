@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
   typesData$: Observable<Paginated> | undefined;
   habitatsData$: Observable<Paginated> | undefined;
   types: Results[] | undefined;
-  @Output() urlEvent = new EventEmitter<string>();
+  @Output() onUrl = new EventEmitter<string>();
 
   constructor(private service: DataService, private route: Router) { }
 
@@ -36,9 +36,8 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  sendToParent(url: string) {
-    console.log('child A sent the url to the parent', url)
-    this.urlEvent.emit(url);
+  sendUrl(url: string) {
+    console.log('child A sent the url to the parent', url);
+    this.onUrl.emit(url);
   }
-
 }

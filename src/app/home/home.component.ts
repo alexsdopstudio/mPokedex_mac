@@ -10,11 +10,12 @@ import { TypeResponse } from '../dataTypes/typeResponse';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
   tableResponse$: Observable<Paginated> | undefined;
   tableRowsData$: Observable<Pokemon[]> | undefined;
   filteredResponse$: Observable<TypeResponse> | undefined;
   filteredData$: Observable<Pokemon[]> | undefined;
+  paginatedData: Paginated | undefined;
 
   data: Pokemon[] | undefined;
   isLoading = true;
@@ -25,13 +26,13 @@ export class HomeComponent implements OnInit{
     this.getPaginatedData('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0');
   }
 
-
-
   getPaginatedData(url: string | null): void {
     if (url) {
       this.isLoading = true;
       this.tableResponse$ = this.service.fetch<Paginated>(url)// Outer request, return an Observable that stores paginated data
-        .pipe(shareReplay(1));// sharePlay for making only one request even if the subscribers are multiple. --multicast
+        //.pipe(shareReplay(1));// sharePlay for making only one request even if the subscribers are multiple. --multicast
+
+      this.tableResponse$.subscribe(res => this.paginatedData = res);
 
       this.tableRowsData$ = this.tableResponse$.pipe(// Observable that stores pokemon data
         switchMap((response: Paginated) => {
@@ -40,30 +41,36 @@ export class HomeComponent implements OnInit{
         }),
         tap(() => this.isLoading = false)
       );
+
+      this.tableRowsData$.subscribe(res => console.log(res));
       this.tableRowsData$.subscribe(res => this.data = res);
+      console.log(this.data);
+
     }
   }
 
-
   getFilteredData(url: string) {
     if (url) {
-      this.filteredResponse$ = this.service.fetch<TypeResponse>(url);
-      console.log('parent fetched data from', url);
+      this.isLoading = true;
+      this.filteredResponse$ = this.service.fetch<TypeResponse>(url)
+      //.pipe(shareReplay(1));
+      //console.log('parent fetched data from', url);
       //this.filteredResponse$.subscribe(res => this.data = res);
-      //this.filteredResponse$.subscribe(res => console.log(res.pokemon));
+      this.filteredResponse$.subscribe(res => console.log(res.pokemon));
 
       this.filteredData$ = this.filteredResponse$.pipe(
         switchMap((response: TypeResponse) => {
           console.log(response);
           const requests = response.pokemon.map((result) => this.service.fetch<Pokemon>(result.url));
-          console.log(requests)
+          console.log(requests);
           return forkJoin(requests);
         }),
-        tap(() => this.isLoading = false)
+        tap(() => this.isLoading = false),
       );
-
-      this.filteredData$.subscribe(res => console.log(res));
+      //.pipe(shareReplay(1));
+      this.filteredData$.subscribe((res) => {console.log(res)});
       this.filteredData$.subscribe(res => this.data = res);
+      console.log(this.data);
     }
   }
 }
