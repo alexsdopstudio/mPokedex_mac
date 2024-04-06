@@ -1,9 +1,9 @@
-<nav style="display: flex; gap: 1rem">
+<nav>
   <div id="search">
     <input type="text" placeholder="Search" #searchInput />
     <button (click)="search(searchInput.value)">Go</button>
   </div>
-  <div>
+  <div class="filtersContainer">
     <button
       (click)="sendUrl(type.url)"
       *ngFor="let type of types"

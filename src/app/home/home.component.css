@@ -1,7 +1,7 @@
 section{
     display: flex;
-    flex-direction: column;
+    /* TODO: row direction */
+    flex-direction: column; 
     height: 100vh;
     overflow: hidden;
-    
 }

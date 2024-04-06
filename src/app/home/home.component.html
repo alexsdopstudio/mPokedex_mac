@@ -1,7 +1,7 @@
 <section>
   <app-sidebar (urlSent)="getFilteredData($event)" ></app-sidebar>
   <app-table [data]="data" [isLoading]="isLoading" style="display: block; height: calc(100vh - 12vh);"></app-table>
-  <div *ngIf="paginatedData">
+  <div *ngIf="paginatedData" style="display: flex; justify-content: center;">
     <button (click)="getPaginatedData(paginatedData.previous)">prev</button>
     <button (click)="getPaginatedData(paginatedData.next)">next</button>
   </div>
