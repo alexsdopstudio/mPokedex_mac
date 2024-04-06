@@ -8,7 +8,6 @@ import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { TableComponent } from './home/table/table.component';
 import { CardComponent } from './card/card.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PaginationComponent } from './home/table/pagination/pagination.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TypeExtractorPipe } from './type-extractor.pipe';
 
@@ -19,7 +18,6 @@ import { TypeExtractorPipe } from './type-extractor.pipe';
     SidebarComponent,
     TableComponent,
     CardComponent,
-    PaginationComponent,
     NotFoundComponent,
     TypeExtractorPipe,
    
