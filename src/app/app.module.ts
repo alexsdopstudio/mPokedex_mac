@@ -10,6 +10,7 @@ import { CardComponent } from './card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginationComponent } from './home/table/pagination/pagination.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { TypeExtractorPipe } from './type-extractor.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CardComponent,
     PaginationComponent,
     NotFoundComponent,
+    TypeExtractorPipe,
    
   ],
   imports: [

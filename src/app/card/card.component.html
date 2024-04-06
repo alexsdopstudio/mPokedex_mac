@@ -12,7 +12,7 @@
       </div>
       <p>weight: {{ pokemon.weight }}</p>
       <p>height: {{ pokemon.height }}</p>
-      <p>{{ this.service.extractTypeNames(pokemon.types) }}</p>
+      <p>{{ pokemon.types | typeExtractor }}</p>
     </div>
     <div class="btnsContainer">
       <button (click)="prevPokemon()">prev</button>

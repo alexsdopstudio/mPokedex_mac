@@ -14,7 +14,7 @@
         <tr *ngFor="let row of data">
           <td>{{ row.id }}</td>
           <td>{{ row.name }}</td>
-          <td>{{ getTypeNames(row.types) }}</td>
+          <td>{{ row.types | typeExtractor}}</td>
           <td>
             <img [src]="row.sprites.front_default" alt="" style="width: 40px" />
           </td>

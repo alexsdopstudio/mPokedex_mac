@@ -40,8 +40,4 @@ export class CardComponent implements OnInit {
     }
   }
 
-  // TODO: encapsulate in a pipe
-  getTypeNames(types: PokemonType[]): string {
-    return this.service.extractTypeNames(types);
-  }
 }

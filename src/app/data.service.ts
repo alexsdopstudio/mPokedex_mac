@@ -20,8 +20,4 @@ export class DataService {
       })
     );
   }
-
-  extractTypeNames(types: PokemonType[]): string {
-    return types.map((obj) => obj.type.name).join(', ');
-  }
 }

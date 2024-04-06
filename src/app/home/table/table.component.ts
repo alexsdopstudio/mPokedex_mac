@@ -11,11 +11,5 @@ export class TableComponent {
   @Input() data: Pokemon[] | undefined;
   @Input() isLoading: Boolean | undefined;
 
-  constructor(private service: DataService) { }
-
-
-  // TODO: encapsulate in a pipe
-  getTypeNames(types: PokemonType[]): string {
-    return this.service.extractTypeNames(types);
-  }
+  constructor() { }
 }
