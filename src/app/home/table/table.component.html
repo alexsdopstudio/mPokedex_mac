@@ -16,7 +16,7 @@
           <td>{{ row.name }}</td>
           <td>{{ row.types | typeExtractor }}</td>
           <td>
-            <img [src]="row.sprites.front_default" alt="" style="width: 40px" />
+            <img [src]="row.sprites.front_default" [alt]="row.name + ' front default sprite'" style="width: 40px" />
           </td>
           <td><button [routerLink]="'card/' + row.id">go</button></td>
         </tr>
