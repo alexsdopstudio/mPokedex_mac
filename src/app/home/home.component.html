@@ -1,5 +1,5 @@
 <section>
-  <app-sidebar (onUrl)="getFilteredData($event)" ></app-sidebar>
+  <app-sidebar (urlSent)="getFilteredData($event)" ></app-sidebar>
   <app-table [data]="data" [isLoading]="isLoading"></app-table>
   <div *ngIf="paginatedData">
     <button (click)="getPaginatedData(paginatedData.previous)">prev</button>

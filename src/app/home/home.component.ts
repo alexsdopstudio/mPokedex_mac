@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     if (url) {
       this.isLoading = true;
       this.tableResponse$ = this.service.fetch<Paginated>(url)// Outer request, return an Observable that stores paginated data
-        //.pipe(shareReplay(1));// sharePlay for making only one request even if the subscribers are multiple. --multicast
+      .pipe(shareReplay(1));// sharePlay for making only one request even if the subscribers are multiple. --multicast
 
       this.tableResponse$.subscribe(res => this.paginatedData = res);
 
@@ -41,11 +41,7 @@ export class HomeComponent implements OnInit {
         }),
         tap(() => this.isLoading = false)
       );
-
-      this.tableRowsData$.subscribe(res => console.log(res));
       this.tableRowsData$.subscribe(res => this.data = res);
-      console.log(this.data);
-
     }
   }
 
@@ -53,24 +49,16 @@ export class HomeComponent implements OnInit {
     if (url) {
       this.isLoading = true;
       this.filteredResponse$ = this.service.fetch<TypeResponse>(url)
-      //.pipe(shareReplay(1));
-      //console.log('parent fetched data from', url);
-      //this.filteredResponse$.subscribe(res => this.data = res);
-      this.filteredResponse$.subscribe(res => console.log(res.pokemon));
+      .pipe(shareReplay(1));
 
       this.filteredData$ = this.filteredResponse$.pipe(
         switchMap((response: TypeResponse) => {
-          console.log(response);
-          const requests = response.pokemon.map((result) => this.service.fetch<Pokemon>(result.url));
-          console.log(requests);
+          const requests = response.pokemon.map((item) => this.service.fetch<Pokemon>(item.pokemon.url));
           return forkJoin(requests);
         }),
-        tap(() => this.isLoading = false),
+        tap(() => this.isLoading = false)
       );
-      //.pipe(shareReplay(1));
-      this.filteredData$.subscribe((res) => {console.log(res)});
       this.filteredData$.subscribe(res => this.data = res);
-      console.log(this.data);
     }
   }
 }

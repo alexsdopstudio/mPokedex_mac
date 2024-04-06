@@ -2,5 +2,8 @@ import { Results } from "./paginatedResponse";
 
 export interface TypeResponse {
     name:  string;
-    pokemon: Results[]
+    pokemon: {
+        pokemon: Results
+        slot: number
+    }[]
 }

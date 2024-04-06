@@ -12,12 +12,12 @@ import { DataService } from '../../data.service';
 })
 export class SidebarComponent implements OnInit {
   private api = `https://pokeapi.co/api/v2/`;
+  @Output() urlSent = new EventEmitter<string>();
   data$: Observable<Pokemon> | undefined;
   typesData$: Observable<Paginated> | undefined;
   habitatsData$: Observable<Paginated> | undefined;
   types: Results[] | undefined;
-  @Output() onUrl = new EventEmitter<string>();
-
+  
   constructor(private service: DataService, private route: Router) { }
 
   ngOnInit(): void {
@@ -25,19 +25,18 @@ export class SidebarComponent implements OnInit {
     this.typesData$.subscribe(res => this.types = res.results);
   }
 
-
   search(name: string): void {
     if (name) {
       this.data$ = this.service.fetch<Pokemon>(this.api + 'pokemon/' + name);
       this.data$.subscribe(res => {
-        //go to the path using id
+        //navigate to the path using id
         this.route.navigate(['/card', res.id]);
       })
     }
   }
 
   sendUrl(url: string) {
-    console.log('child A sent the url to the parent', url);
-    this.onUrl.emit(url);
+    //console.log('child sidebar sent the url to the parent', url);
+    this.urlSent.emit(url);
   }
 }
